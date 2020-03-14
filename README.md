@@ -2,8 +2,14 @@
 
 Docker container with OpenVPN client preconfigured for SurfShark
 
+[![](https://images.microbadger.com/badges/version/ilteoood/docker-surfshark.svg)](https://microbadger.com/images/ilteoood/docker-surfshark "Get your own version badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/ilteoood/docker-surfshark.svg)](https://microbadger.com/images/ilteoood/docker-surfshark "Get your own image badge on microbadger.com")
+![Build only image](https://github.com/ilteoood/docker-surfshark/workflows/Build%20only%20image/badge.svg?branch=master)
+
 ------------------------------------------------
-![logo](./images/logo.png)
+<p align="center">
+    <img src="https://github.com/ilteoood/docker-surfshark/raw/master/images/logo.png" alt="logo"/>
+</p>
 
 This is a [multi-arch](https://medium.com/gft-engineering/docker-why-multi-arch-images-matters-927397a5be2e) image, updated automatically thanks to [GitHub Actions](https://github.com/features/actions).
 
@@ -20,11 +26,13 @@ The container is configurable using 4 environment variables:
 |SURFSHARK_USER|Yes|Username provided by SurfShark|
 |SURFSHARK_PASSWORD|Yes|Password provided by SurfShark|
 |SURFSHARK_COUNTRY|No|The country, supported by SurfShark, in which you want to connect|
-|CONNECTION_TYPE|No|The connection type that you qant to use: tcp, udp|
+|CONNECTION_TYPE|No|The connection type that you want to use: tcp, udp|
 
 `SURFSHARK_USER` and `SURFSHARK_PASSWORD` are provided at the bottom of this page: [https://account.surfshark.com/setup/manual](https://account.surfshark.com/setup/manual).
 
-![SurfShark credentials](https://support.surfshark.com/hc/article_attachments/360007351360/6.png)
+<p align="center">
+    <img src="https://support.surfshark.com/hc/article_attachments/360007351360/6.png" alt="SurfShark credentials"/>
+</p>
 
 ## Execution
 
