@@ -1,0 +1,16 @@
+version: "2"
+
+services: 
+    surfshark:
+        image: ilteoood:latest
+        container_name: surfshark
+        environment: 
+            - SURFSHARK_USER=YOUR_SURFSHARK_USER
+            - SURFSHARK_PASSWORD=YOUR_SURFSHARK_PASSWORD
+            - SURFSHARK_COUNTRY=it
+            - CONNECTION_TYPE=udp
+        cap_add: 
+            - NET_ADMIN
+        devices:
+            - /dev/net/tun
+        restart: unless-stopped
