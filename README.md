@@ -43,7 +43,7 @@ version: "2"
 
 services: 
     surfshark:
-        image: ilteoood:docker-surfshark
+        image: ilteoood/docker-surfshark
         container_name: surfshark
         environment: 
             - SURFSHARK_USER=YOUR_SURFSHARK_USER
