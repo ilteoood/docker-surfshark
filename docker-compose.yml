@@ -8,6 +8,7 @@ services:
             - SURFSHARK_USER=YOUR_SURFSHARK_USER
             - SURFSHARK_PASSWORD=YOUR_SURFSHARK_PASSWORD
             - SURFSHARK_COUNTRY=it
+            - SURFSHARK_CITY=mil
             - CONNECTION_TYPE=udp
         cap_add: 
             - NET_ADMIN
