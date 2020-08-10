@@ -50,12 +50,23 @@ services:
             - SURFSHARK_USER=YOUR_SURFSHARK_USER
             - SURFSHARK_PASSWORD=YOUR_SURFSHARK_PASSWORD
             - SURFSHARK_COUNTRY=it
+            - SURFSHARK_CITY=mil
             - CONNECTION_TYPE=udp
         cap_add: 
             - NET_ADMIN
         devices:
             - /dev/net/tun
         restart: unless-stopped
+        dns:
+            - 1.1.1.1
+    service_test:
+        image: byrnedo/alpine-curl
+        container_name: alpine
+        command: -L 'https://ipinfo.io'
+        depends_on: 
+            - surfshark
+        network_mode: service:surfshark
+        restart: always
 ```
 
 Or you can use the standard `docker run` command.

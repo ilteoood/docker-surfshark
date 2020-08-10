@@ -2,7 +2,7 @@ version: "2"
 
 services: 
     surfshark:
-        image: ilteoood:latest
+        image: ilteoood/docker-surfshark
         container_name: surfshark
         environment: 
             - SURFSHARK_USER=YOUR_SURFSHARK_USER
@@ -15,3 +15,13 @@ services:
         devices:
             - /dev/net/tun
         restart: unless-stopped
+        dns:
+            - 1.1.1.1
+    service_test:
+        image: byrnedo/alpine-curl
+        container_name: alpine
+        command: -L 'https://ipinfo.io'
+        depends_on: 
+            - surfshark
+        network_mode: service:surfshark
+        restart: always
