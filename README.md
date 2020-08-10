@@ -32,7 +32,7 @@ The container is configurable using 4 environment variables:
 `SURFSHARK_USER` and `SURFSHARK_PASSWORD` are provided at the bottom of this page: [https://account.surfshark.com/setup/manual](https://account.surfshark.com/setup/manual).
 
 <p align="center">
-    <img src="https://support.surfshark.com/hc/article_attachments/360007351360/6.png" alt="SurfShark credentials"/>
+    <img src="https://support.surfshark.com/hc/article_attachments/360038503393/mceclip0.png" alt="SurfShark credentials"/>
 </p>
 
 ## Execution
