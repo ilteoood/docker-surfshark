@@ -11,7 +11,7 @@ if [ -n ${LAN_NETWORK}  ]
 then
     DEFAULT_GATEWAY=$(ip -4 route list 0/0 | cut -d ' ' -f 3)
     ip route add "${LAN_NETWORK}" via "${DEFAULT_GATEWAY}" dev eth0
-    echo Adding ip route add "${LAN_NETWORK}" via "${DEFAULT_GATEWAY}" dev eth0 for attached container's web ui access
+    echo Adding ip route add "${LAN_NETWORK}" via "${DEFAULT_GATEWAY}" dev eth0 for attached container web ui access
     echo Do not forget to expose the ports for attached container we ui access
 fi
 openvpn --config $VPN_FILE --auth-user-pass vpn-auth.txt
