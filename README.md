@@ -19,7 +19,7 @@ The link is established using the [OpenVPN](https://openvpn.net/) client.
 
 ## Configuration
 
-The container is configurable using 4 environment variables:
+The container is configurable using 5 environment variables:
 
 | Name | Mandatory | Description |
 |------|-----------|-------------|
@@ -28,6 +28,7 @@ The container is configurable using 4 environment variables:
 |SURFSHARK_COUNTRY|No|The country, supported by SurfShark, in which you want to connect|
 |SURFSHARK_CITY|No|The city of the country in which you want to connect|
 |CONNECTION_TYPE|No|The connection type that you want to use: tcp, udp|
+|LAN_NETWORK|No|Lan network used to access the web ui of attached containers. Comment out or leave blank: example 192.168.0.0/24|
 
 `SURFSHARK_USER` and `SURFSHARK_PASSWORD` are provided at the bottom of this page: [https://account.surfshark.com/setup/manual](https://account.surfshark.com/setup/manual).
 
@@ -52,6 +53,7 @@ services:
             - SURFSHARK_COUNTRY=it
             - SURFSHARK_CITY=mil
             - CONNECTION_TYPE=udp
+            - LAN_NETWORK=
         cap_add: 
             - NET_ADMIN
         devices:
@@ -80,5 +82,7 @@ If you want to attach a container to the VPN, you can simply run:
 ```sh
 sudo docker run -it --net=container:CONTAINER_NAME alpine /bin/sh
 ```
+
+If you want access to an attached container's web ui you will also need to expose those ports.  The attached container must not be started until this container is up and fully running.
 
 If you face network connection problems, I suggest you to set a specific DNS server for each container.

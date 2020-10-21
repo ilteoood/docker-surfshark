@@ -10,6 +10,9 @@ services:
             - SURFSHARK_COUNTRY=it
             - SURFSHARK_CITY=mil
             - CONNECTION_TYPE=udp
+            - LAN_NETWORK=192.168.0.0/24      #Optional - Used to access attached containers web ui
+        ports:
+          - 1880:1880                         #Optional - Used to access attached containers web ui
         cap_add: 
             - NET_ADMIN
         devices:
@@ -25,3 +28,4 @@ services:
             - surfshark
         network_mode: service:surfshark
         restart: always
+
