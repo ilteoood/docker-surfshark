@@ -18,11 +18,13 @@ jobs:
                 platform: linux/amd64,linux/arm64,linux/ppc64le,linux/s390x,linux/386,linux/arm/v7,linux/arm/v6
                 imageName: ilteoood/docker-surfshark
             - name: Scan image
-              uses: anchore/scan-action@master
+              uses: anchore/scan-action@v2
               with:
-                image-reference: "ilteoood/docker-surfshark:latest"
-                dockerfile-path: "./Dockerfile"
+                image: "ilteoood/docker-surfshark:latest"
                 fail-build: true
-                include-app-packages: true
+                acs-report-enable: true
+                severity-cutoff: critical
             - name: Anchore inline scan JSON results
               run: for j in `ls ./anchore-reports/*.json`; do echo "---- ${j} ----"; cat ${j}; echo; done
+            - name: Inspect action SARIF report
+              run: cat ${{ steps.scan.outputs.sarif }}
