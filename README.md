@@ -38,6 +38,7 @@ The container is configurable using 4 environment variables:
 ## Execution
 
 You can run this image using [Docker compose](https://docs.docker.com/compose/) and the [sample file](./docker-compose.yml) provided.
+** Remember: if you want to use the web gui of a container, you must open its ports on `docker-surfshark` as described below. **
 
 ```
 version: "2"
@@ -56,6 +57,8 @@ services:
             - NET_ADMIN
         devices:
             - /dev/net/tun
+        ports:
+            - 9091:9091 #we open here the port for transmission, as this container will be the access point for the others
         restart: unless-stopped
         dns:
             - 1.1.1.1
@@ -67,6 +70,17 @@ services:
             - surfshark
         network_mode: service:surfshark
         restart: always
+    transmission:
+        image: linuxserver/transmission
+        container_name: transmission
+        environment:
+            - PUID=1000
+            - PGID=1000
+            - TZ=Europe/Rome
+        #ports:
+            #- 9091:9091 needed to access transmission's GUI
+        network_mode: service:surfshark
+        restart: unless-stopped
 ```
 
 Or you can use the standard `docker run` command.
