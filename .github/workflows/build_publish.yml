@@ -8,7 +8,7 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
-        name: Build image job
+        name: Build and publish image job
         steps:
             - name: Checkout master
               uses: actions/checkout@master
