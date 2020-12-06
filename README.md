@@ -27,6 +27,7 @@ The container is configurable using 5 environment variables:
 |SURFSHARK_PASSWORD|Yes|Password provided by SurfShark|
 |SURFSHARK_COUNTRY|No|The country, supported by SurfShark, in which you want to connect|
 |SURFSHARK_CITY|No|The city of the country in which you want to connect|
+|OPENVPN_OPTS|No|Any additional options for OpenVPN|
 |CONNECTION_TYPE|No|The connection type that you want to use: tcp, udp|
 |LAN_NETWORK|No|Lan network used to access the web ui of attached containers. Comment out or leave blank: example 192.168.0.0/24|
 
