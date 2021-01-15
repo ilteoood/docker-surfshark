@@ -10,8 +10,15 @@ printf "${SURFSHARK_USER}\n${SURFSHARK_PASSWORD}" > vpn-auth.txt
 if [ -n ${LAN_NETWORK}  ]
 then
     DEFAULT_GATEWAY=$(ip -4 route list 0/0 | cut -d ' ' -f 3)
-    ip route add "${LAN_NETWORK}" via "${DEFAULT_GATEWAY}" dev eth0
-    echo Adding ip route add "${LAN_NETWORK}" via "${DEFAULT_GATEWAY}" dev eth0 for attached container web ui access
+    
+    splitSubnets=$(echo ${LAN_NETWORK} | tr "," "\n")
+    
+    for subnet in $splitSubnets
+    do  
+        ip route add "$subnet" via "${DEFAULT_GATEWAY}" dev eth0
+        echo Adding ip route add "$subnet" via "${DEFAULT_GATEWAY}" dev eth0 for attached container web ui access
+    done
+    
     echo Do not forget to expose the ports for attached container we ui access
 fi
 openvpn --config $VPN_FILE --auth-user-pass vpn-auth.txt --mute-replay-warnings $OPENVPN_OPTS
