@@ -9,13 +9,12 @@ printf "${SURFSHARK_USER}\n${SURFSHARK_PASSWORD}" > vpn-auth.txt
 
 if [ -n ${LAN_NETWORK}  ]
 then
+    DEFAULT_GATEWAY=$(ip -4 route list 0/0 | cut -d ' ' -f 3)
+    
     splitSubnets=$(echo ${LAN_NETWORK} | tr "," "\n")
     
     for subnet in $splitSubnets
-    do
-        echo "[$subnet]"
-        
-        DEFAULT_GATEWAY=$(ip -4 route list 0/0 | cut -d ' ' -f 3)
+    do  
         ip route add "$subnet" via "${DEFAULT_GATEWAY}" dev eth0
         echo Adding ip route add "$subnet" via "${DEFAULT_GATEWAY}" dev eth0 for attached container web ui access
     done
