@@ -21,5 +21,3 @@ jobs:
                 publish: true
                 dockerUser: ilteoood
                 dockerPassword: ${{ secrets.DOCKER_HUB_PASSWORD }}
-            - name: Update badge
-              run: curl -X POST ${{ secrets.BADGE_UPDATE_URL }}
