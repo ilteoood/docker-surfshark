@@ -101,3 +101,16 @@ sudo docker run -it --net=container:CONTAINER_NAME alpine /bin/sh
 If you want access to an attached container's web ui you will also need to expose those ports.  The attached container must not be started until this container is up and fully running.
 
 If you face network connection problems, I suggest you to set a specific DNS server for each container.
+
+## Do you like my work?
+<p align="center">
+    <a href="https://www.patreon.com/ilteoood">
+        <img align="center" alt="patreon" src="https://img.shields.io/endpoint.svg?url=https%3A%2F%2Fshieldsio-patreon.vercel.app%2Fapi%3Fusername%3Dilteoood%26type%3Dpatrons&style=for-the-badge">
+        </img>
+    </a>
+    or
+    <a href="https://www.buymeacoffee.com/ilteoood">
+        <img align="center" alt="buy-me-a-coffee" src="https://img.shields.io/badge/-buy_me_a%C2%A0coffee-gray?logo=buy-me-a-coffee">
+        </img>
+    </a>
+</p>
