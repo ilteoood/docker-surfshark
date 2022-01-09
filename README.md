@@ -30,6 +30,7 @@ The container is configurable using 5 environment variables:
 |OPENVPN_OPTS|No|Any additional options for OpenVPN|
 |CONNECTION_TYPE|No|The connection type that you want to use: tcp, udp|
 |LAN_NETWORK|No|Lan network used to access the web ui of attached containers. Can be comma seperated for multiple subnets Comment out or leave blank: example 192.168.0.0/24|
+|CREATE_TUN_DEVICE|No|Creates the TUN device, useful for NAS users|
 
 `SURFSHARK_USER` and `SURFSHARK_PASSWORD` are provided at the bottom of this page: [https://account.surfshark.com/setup/manual](https://account.surfshark.com/setup/manual).
 

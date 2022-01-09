@@ -21,4 +21,12 @@ then
     
     echo Do not forget to expose the ports for attached container we ui access
 fi
+
+if [ "${CREATE_TUN_DEVICE}" = "true" ]; then
+  echo "Creating TUN device /dev/net/tun"
+  mkdir -p /dev/net
+  mknod /dev/net/tun c 10 200
+  chmod 0666 /dev/net/tun
+fi
+
 openvpn --config $VPN_FILE --auth-user-pass vpn-auth.txt --mute-replay-warnings $OPENVPN_OPTS
