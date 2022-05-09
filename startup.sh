@@ -19,7 +19,7 @@ then
         echo Adding ip route add "$subnet" via "${DEFAULT_GATEWAY}" dev eth0 for attached container web ui access
     done
     
-    echo Do not forget to expose the ports for attached container we ui access
+    echo Do not forget to expose the ports for attached container web ui access
 fi
 
 if [ "${CREATE_TUN_DEVICE}" = "true" ]; then
