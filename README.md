@@ -32,10 +32,10 @@ The container is configurable using 5 environment variables:
 |LAN_NETWORK|No|Lan network used to access the web ui of attached containers. Can be comma seperated for multiple subnets Comment out or leave blank: example 192.168.0.0/24|
 |CREATE_TUN_DEVICE|No|Creates the TUN device, useful for NAS users|
 
-`SURFSHARK_USER` and `SURFSHARK_PASSWORD` are provided at the bottom of this page: [https://account.surfshark.com/setup/manual](https://account.surfshark.com/setup/manual).
+`SURFSHARK_USER` and `SURFSHARK_PASSWORD` are provided at this page: [https://my.surfshark.com/vpn/manual-setup/main](https://my.surfshark.com/vpn/manual-setup/main).
 
 <p align="center">
-    <img src="https://support.surfshark.com/hc/article_attachments/360038503393/mceclip0.png" alt="SurfShark credentials"/>
+    <img src="https://user-images.githubusercontent.com/12913436/180714205-095e891e-4636-43c2-918c-5379f075d993.png" alt="SurfShark credentials"/>
 </p>
 
 ## Execution
