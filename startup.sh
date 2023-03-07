@@ -1,7 +1,10 @@
 #!/bin/sh
 rm -rf ovpn_configs*
-wget -O ovpn_configs.zip https://my.surfshark.com/vpn/api/v1/server/configurations
-unzip ovpn_configs.zip -d ovpn_configs
+if [ -z "${OVPN_CONFIGS}" ]; then
+  wget -O ovpn_configs.zip https://my.surfshark.com/vpn/api/v1/server/configurations
+  OVPN_CONFIGS=ovpn_configs.zip
+fi
+unzip "${OVPN_CONFIGS}" -d ovpn_configs
 cd ovpn_configs
 VPN_FILE=$(ls "${SURFSHARK_COUNTRY}"* | grep "${SURFSHARK_CITY}" | grep "${CONNECTION_TYPE}" | shuf | head -n 1)
 echo Chose: ${VPN_FILE}
