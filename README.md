@@ -31,7 +31,7 @@ The container is configurable using 5 environment variables:
 |CONNECTION_TYPE|No|The connection type that you want to use: tcp, udp|
 |LAN_NETWORK|No|Lan network used to access the web ui of attached containers. Can be comma seperated for multiple subnets Comment out or leave blank: example 192.168.0.0/24|
 |CREATE_TUN_DEVICE|No|Creates the TUN device, useful for NAS users|
-|OVPN_CONFIGS|No|Manually provide "Surfshark_Config.zip" file (contains surfshark OpenVPN configuration files)
+|OVPN_CONFIGS|No|Manually provide the path used to read the "Surfshark_Config.zip" file (contains Surshark's OpenVPN configuration files)
 
 `SURFSHARK_USER` and `SURFSHARK_PASSWORD` are provided at this page: [https://my.surfshark.com/vpn/manual-setup/main](https://my.surfshark.com/vpn/manual-setup/main).
 
@@ -108,26 +108,12 @@ If you face network connection problems, I suggest you to set a specific DNS ser
 
 Sometimes the startup script fails to download OpenVPN configs file from Surfshark's website, possibly due to the DDoS protection on it.
 
-1. Go to https://surfshark.com.
-2. Click the "Log in" button.
-3. This will display the "checking browser security" screen (typical DDoS protection middleware).
-4. Once you're on https://my.surfshark.com/home/dashboard, paste https://my.surfshark.com/vpn/api/v1/server/configurations into your browser's URL bar, this will download the `Surfshark_Config.zip` file. Save the file somewhere.
 
-   Typically, these DDoS protection middlewares will set some sort of cookie if the check is successful. This makes it possible to reach the target URL via the browser.
-5. Create docker volume: `docker volume create surfshark-config`.
-6. Find where it's located at: `docker volume inspect surfshark-config` ("Mountpoint" field).
+To avoid it, you can provide your own `Surfshark_Config.zip` file, downloading it from [here](https://my.surfshark.com/vpn/api/v1/server/configurations).
 
-   In my case it's: `/var/lib/docker/volumes/surfshark-config/_data`
+Then, you **must** make the `zip` available inside the container, using a [bind mount](https://docs.docker.com/storage/bind-mounts/) or a [volume](https://docs.docker.com/storage/volumes/).
 
-7. Copy `Surfshark_Config.zip` to it:
-
-   `sudo cp Surfshark_Config.zip /var/lib/docker/volumes/surfshark-config/_data`
-
-8. Run the container with appropriate options:
-
-   `-v surfshark-config:/ovpn-configs` (mount the volume)
-
-   `-e OVPN_CONFIGS=/ovpn-configs/Surfshark_Config.zip` (specify environment variable)
+Finally, you **must** set the `OVPN_CONFIGS` environment variable.
 
 ## Do you like my work?
 <p align="center">
