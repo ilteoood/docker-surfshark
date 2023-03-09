@@ -106,7 +106,7 @@ If you face network connection problems, I suggest you to set a specific DNS ser
 
 ## Provide OpenVPN Configs Manually
 
-Sometimes the startup script fails to download OpenVPN configs file from Surfshark's website, possibly this happens due to some form of DDoS protection on it.
+Sometimes the startup script fails to download OpenVPN configs file from Surfshark's website, possibly due to the DDoS protection on it.
 
 1. Go to https://surfshark.com.
 2. Click the "Log in" button.
