@@ -31,6 +31,7 @@ The container is configurable using 5 environment variables:
 |CONNECTION_TYPE|No|The connection type that you want to use: tcp, udp|
 |LAN_NETWORK|No|Lan network used to access the web ui of attached containers. Can be comma seperated for multiple subnets Comment out or leave blank: example 192.168.0.0/24|
 |CREATE_TUN_DEVICE|No|Creates the TUN device, useful for NAS users|
+|OVPN_CONFIGS|No|Manually provide the path used to read the "Surfshark_Config.zip" file (contains Surshark's OpenVPN configuration files)
 
 `SURFSHARK_USER` and `SURFSHARK_PASSWORD` are provided at this page: [https://my.surfshark.com/vpn/manual-setup/main](https://my.surfshark.com/vpn/manual-setup/main).
 
@@ -102,6 +103,17 @@ sudo docker run -it --net=container:CONTAINER_NAME alpine /bin/sh
 If you want access to an attached container's web ui you will also need to expose those ports.  The attached container must not be started until this container is up and fully running.
 
 If you face network connection problems, I suggest you to set a specific DNS server for each container.
+
+## Provide OpenVPN Configs Manually
+
+Sometimes the startup script fails to download OpenVPN configs file from Surfshark's website, possibly due to the DDoS protection on it.
+
+
+To avoid it, you can provide your own `Surfshark_Config.zip` file, downloading it from [here](https://my.surfshark.com/vpn/api/v1/server/configurations).
+
+Then, you **must** make the `zip` available inside the container, using a [bind mount](https://docs.docker.com/storage/bind-mounts/) or a [volume](https://docs.docker.com/storage/volumes/).
+
+Finally, you **must** set the `OVPN_CONFIGS` environment variable.
 
 ## Do you like my work?
 <p align="center">
