@@ -33,7 +33,7 @@ The container is configurable using 5 environment variables:
 |CREATE_TUN_DEVICE|No|Creates the TUN device, useful for NAS users|
 |OVPN_CONFIGS|No|Manually provide the path used to read the "Surfshark_Config.zip" file (contains Surshark's OpenVPN configuration files)
 
-`SURFSHARK_USER` and `SURFSHARK_PASSWORD` are provided at this page: [https://my.surfshark.com/vpn/manual-setup/main](https://my.surfshark.com/vpn/manual-setup/main).
+`SURFSHARK_USER` and `SURFSHARK_PASSWORD` are provided at [this page](https://my.surfshark.com/vpn/manual-setup/main/openvpn).
 
 <p align="center">
     <img src="https://user-images.githubusercontent.com/12913436/180714205-095e891e-4636-43c2-918c-5379f075d993.png" alt="SurfShark credentials"/>
