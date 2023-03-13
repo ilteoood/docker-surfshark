@@ -32,6 +32,7 @@ The container is configurable using 5 environment variables:
 |LAN_NETWORK|No|Lan network used to access the web ui of attached containers. Can be comma seperated for multiple subnets Comment out or leave blank: example 192.168.0.0/24|
 |CREATE_TUN_DEVICE|No|Creates the TUN device, useful for NAS users|
 |OVPN_CONFIGS|No|Manually provide the path used to read the "Surfshark_Config.zip" file (contains Surshark's OpenVPN configuration files)
+|ENABLE_KILL_SWITCH|No|Enable the kill-switch functionality
 
 `SURFSHARK_USER` and `SURFSHARK_PASSWORD` are provided at [this page](https://my.surfshark.com/vpn/manual-setup/main/openvpn).
 
