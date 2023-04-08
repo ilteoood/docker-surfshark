@@ -41,3 +41,5 @@ if [ "${ENABLE_KILL_SWITCH}" = "true" ]; then
   ufw allow out on tun0 from any to any
   ufw enable
 fi
+
+sockd -D
