@@ -42,8 +42,8 @@ The container is configurable using 5 environment variables:
 
 ## Execution
 
-You can run this image using [Docker compose](https://docs.docker.com/compose/) and the [sample file](./docker-compose.yml) provided.
-** Remember: if you want to use the web gui of a container, you must open its ports on `docker-surfshark` as described below. **
+You can run this image using [Docker compose](https://docs.docker.com/compose/) and the [sample file](./docker-compose.yml) provided.  
+**Remember: if you want to use the web gui of a container, you must open its ports on `docker-surfshark` as described below.**
 
 ```
 version: "2"
@@ -64,6 +64,7 @@ services:
         devices:
             - /dev/net/tun
         ports:
+            - 1080:1080 #if you want to use the socks5 server
             - 9091:9091 #we open here the port for transmission, as this container will be the access point for the others
         restart: unless-stopped
         dns:
@@ -101,9 +102,12 @@ If you want to attach a container to the VPN, you can simply run:
 sudo docker run -it --net=container:CONTAINER_NAME alpine /bin/sh
 ```
 
-If you want access to an attached container's web ui you will also need to expose those ports.  The attached container must not be started until this container is up and fully running.
+If you want access to an attached container's web ui you will also need to expose those ports.  
+The attached container must not be started until this container is up and fully running.
 
 If you face network connection problems, I suggest you to set a specific DNS server for each container.
+
+Alternatively, if your software supports it, you can use the socks5 server embedded in this container. It will redirect your traffic through the Surfshark's VPN.
 
 ## Provide OpenVPN Configs Manually
 

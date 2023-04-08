@@ -1,8 +1,8 @@
 FROM alpine:latest
 LABEL maintainer.name="Matteo Pietro Dazzi" \
     maintainer.email="matteopietro.dazzi@gmail.com" \
-    version="1.5.0" \
-    description="OpenVPN client configured for SurfShark VPN"
+    version="1.6.0" \
+    description="OpenVPN client and socks5 server configured for SurfShark VPN"
 WORKDIR /vpn
 ENV SURFSHARK_USER=
 ENV SURFSHARK_PASSWORD=
@@ -16,5 +16,9 @@ ENV OVPN_CONFIGS=
 ENV ENABLE_KILL_SWITCH=true
 HEALTHCHECK --interval=60s --timeout=10s --start-period=30s CMD curl -L 'https://ipinfo.io'
 COPY startup.sh .
-RUN apk add --update --no-cache openvpn wget unzip coreutils curl ufw && chmod +x ./startup.sh
+COPY sockd.conf /etc/
+COPY sockd.sh .
+RUN apk add --update --no-cache openvpn wget unzip coreutils curl ufw dante-server \
+    && chmod +x ./startup.sh \
+    && chmod +x ./sockd.sh
 ENTRYPOINT [ "./startup.sh" ]

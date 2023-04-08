@@ -32,7 +32,7 @@ if [ "${CREATE_TUN_DEVICE}" = "true" ]; then
   chmod 0666 /dev/net/tun
 fi
 
-openvpn --config $VPN_FILE --auth-user-pass vpn-auth.txt --mute-replay-warnings $OPENVPN_OPTS
+openvpn --config $VPN_FILE --auth-user-pass vpn-auth.txt --mute-replay-warnings $OPENVPN_OPTS --script-security 2 --up /vpn/sockd.sh
 
 if [ "${ENABLE_KILL_SWITCH}" = "true" ]; then
   ufw reset
