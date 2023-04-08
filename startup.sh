@@ -5,16 +5,16 @@ if [ -z "${OVPN_CONFIGS}" ]; then
   OVPN_CONFIGS=ovpn_configs.zip
 fi
 unzip "${OVPN_CONFIGS}" -d ovpn_configs
-cd ovpn_configs || exit
+cd ovpn_configs
 VPN_FILE=$(ls "${SURFSHARK_COUNTRY}"* | grep "${SURFSHARK_CITY}" | grep "${CONNECTION_TYPE}" | shuf | head -n 1)
-echo Chose: "${VPN_FILE}"
+echo Chose: ${VPN_FILE}
 printf "${SURFSHARK_USER}\n${SURFSHARK_PASSWORD}" > vpn-auth.txt
 
-if [ -n "${LAN_NETWORK}"  ]
+if [ -n ${LAN_NETWORK}  ]
 then
     DEFAULT_GATEWAY=$(ip -4 route list 0/0 | cut -d ' ' -f 3)
 
-    splitSubnets=$(echo "${LAN_NETWORK}" | tr "," "\n")
+    splitSubnets=$(echo ${LAN_NETWORK} | tr "," "\n")
 
     for subnet in $splitSubnets
     do
