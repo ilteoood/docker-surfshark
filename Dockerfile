@@ -17,5 +17,8 @@ ENV ENABLE_KILL_SWITCH=true
 HEALTHCHECK --interval=60s --timeout=10s --start-period=30s CMD curl -L 'https://ipinfo.io'
 COPY startup.sh .
 COPY sockd.conf /etc/
-RUN apk add --update --no-cache openvpn wget unzip coreutils curl ufw dante-server && chmod +x ./startup.sh
+COPY sockd.sh .
+RUN apk add --update --no-cache openvpn wget unzip coreutils curl ufw dante-server \
+    && chmod +x ./startup.sh \
+    && chmod +x ./sockd.sh
 ENTRYPOINT [ "./startup.sh" ]
