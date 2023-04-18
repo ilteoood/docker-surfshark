@@ -14,7 +14,7 @@ ENV LAN_NETWORK=
 ENV CREATE_TUN_DEVICE=
 ENV OVPN_CONFIGS=
 ENV ENABLE_KILL_SWITCH=true
-HEALTHCHECK --interval=60s --timeout=10s --start-period=30s CMD curl -L 'https://ipinfo.io'
+HEALTHCHECK --interval=60s --timeout=10s --start-period=30s CMD curl -s https://api.surfshark.com/v1/server/user | grep '"secured":true'
 COPY startup.sh .
 COPY sockd.conf /etc/
 COPY sockd.sh .
