@@ -32,6 +32,12 @@ if [ "${CREATE_TUN_DEVICE}" = "true" ]; then
   chmod 0666 /dev/net/tun
 fi
 
+# Enable NAT w MASQUERADE mode
+if [ "${ENABLE_MASQUERADE}" = "true" ]; then
+  echo "Enabling IP MASQUERADE using IP Tables"
+  iptables -t nat -A POSTROUTING -o tun+ -j MASQUERADE
+fi
+
 openvpn --config $VPN_FILE --auth-user-pass vpn-auth.txt --mute-replay-warnings $OPENVPN_OPTS --script-security 2 --up /vpn/sockd.sh
 
 if [ "${ENABLE_KILL_SWITCH}" = "true" ]; then
