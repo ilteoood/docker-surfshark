@@ -11,6 +11,7 @@ services:
             - SURFSHARK_CITY=mil
             - CONNECTION_TYPE=udp
             - LAN_NETWORK=192.168.0.0/24      #Optional - Used to access attached containers web ui
+            - ENABLE_MASQUERADE=true          #Optional - Masquerade NAT allows you to translate multiple IP addresses to another single IP address. Usefull when using KASM Workspaces VPN Sidecar.
         cap_add: 
             - NET_ADMIN
         devices:
