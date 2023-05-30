@@ -31,7 +31,7 @@ The container is configurable using 5 environment variables:
 |CONNECTION_TYPE|No|The connection type that you want to use: tcp, udp|
 |LAN_NETWORK|No|Lan network used to access the web ui of attached containers. Can be comma seperated for multiple subnets Comment out or leave blank: example 192.168.0.0/24|
 |CREATE_TUN_DEVICE|No|Creates the TUN device, useful for NAS users|
-|ENABLE_MASQUERADE|No|Masquerade NAT allows you to translate multiple IP addresses to another single IP address. Usefull when using KASM Workspaces VPN Sidecar.|
+|ENABLE_MASQUERADE|No|Masquerade NAT allows you to translate multiple IP addresses to another single IP address.|
 |OVPN_CONFIGS|No|Manually provide the path used to read the "Surfshark_Config.zip" file (contains Surshark's OpenVPN configuration files)
 |ENABLE_KILL_SWITCH|No|Enable the kill-switch functionality
 
