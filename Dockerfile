@@ -1,7 +1,7 @@
 FROM alpine:latest
 LABEL maintainer.name="Matteo Pietro Dazzi" \
     maintainer.email="matteopietro.dazzi@gmail.com" \
-    version="1.7.0" \
+    version="1.7.1" \
     description="OpenVPN client and socks5 server configured for SurfShark VPN"
 WORKDIR /vpn
 ENV SURFSHARK_USER=
