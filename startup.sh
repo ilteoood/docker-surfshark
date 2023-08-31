@@ -6,7 +6,7 @@ if [ -z "${OVPN_CONFIGS}" ]; then
 fi
 unzip "${OVPN_CONFIGS}" -d ovpn_configs
 cd ovpn_configs
-VPN_FILE=$(ls *_"${SURFSHARK_COUNTRY}"* | grep "${SURFSHARK_CITY}" | grep "${CONNECTION_TYPE}" | shuf | head -n 1)
+VPN_FILE=$(ls *"${SURFSHARK_COUNTRY}"-* | grep "${SURFSHARK_CITY}" | grep "${CONNECTION_TYPE}" | shuf | head -n 1)
 echo Chose: ${VPN_FILE}
 printf "${SURFSHARK_USER}\n${SURFSHARK_PASSWORD}" > vpn-auth.txt
 
