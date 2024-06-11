@@ -1,20 +1,20 @@
 #!/bin/sh
 rm -rf ovpn_configs*
 if [ -z "${OVPN_CONFIGS}" ]; then
+  wget -O ovpn_configs.zip ${SURFSHARK_CONFIGS_ENDPOINT}
   OVPN_CONFIGS=ovpn_configs.zip
-  wget -O ${OVPN_CONFIGS} "${SURFSHARK_CONFIGS_ENDPOINT}"
 fi
 unzip "${OVPN_CONFIGS}" -d ovpn_configs
 cd ovpn_configs
 VPN_FILE=$(ls *"${SURFSHARK_COUNTRY}"-* | grep "${SURFSHARK_CITY}" | grep "${CONNECTION_TYPE}" | shuf | head -n 1)
-echo Chose: "${VPN_FILE}"
+echo Chose: ${VPN_FILE}
 printf "${SURFSHARK_USER}\n${SURFSHARK_PASSWORD}" > vpn-auth.txt
 
-if [ -n "${LAN_NETWORK}"  ]
+if [ -n ${LAN_NETWORK}  ]
 then
     DEFAULT_GATEWAY=$(ip -4 route list 0/0 | cut -d ' ' -f 3)
 
-    splitSubnets=$(echo "${LAN_NETWORK}" | tr "," "\n")
+    splitSubnets=$(echo ${LAN_NETWORK} | tr "," "\n")
 
     for subnet in $splitSubnets
     do
@@ -46,7 +46,7 @@ if [ "${ENABLE_SOCKS_SERVER}" = "true" ]; then
   OPTIONAL_SOCKS_SCRIPT="--up /vpn/sockd.sh"
 fi
 
-openvpn --config "$VPN_FILE" --auth-user-pass vpn-auth.txt --mute-replay-warnings "$OPENVPN_OPTS" --script-security 2 "${OPTIONAL_SOCKS_SCRIPT}"
+openvpn --config $VPN_FILE --auth-user-pass vpn-auth.txt --mute-replay-warnings $OPENVPN_OPTS --script-security 2 ${OPTIONAL_SOCKS_SCRIPT}
 
 if [ "${ENABLE_KILL_SWITCH}" = "true" ]; then
   ufw reset
