@@ -38,20 +38,13 @@ if [ "${ENABLE_MASQUERADE}" = "true" ]; then
   iptables -t nat -A POSTROUTING -o tun+ -j MASQUERADE
 fi
 
-
-OPTIONAL_SOCKS_SCRIPT=""
-# Enable NAT w MASQUERADE mode
-if [ "${ENABLE_SOCKS_SERVER}" = "true" ]; then
-  echo "Enable SOCKS Server for the VPN"
-  OPTIONAL_SOCKS_SCRIPT="--up /vpn/sockd.sh"
-fi
-
-openvpn --config $VPN_FILE --auth-user-pass vpn-auth.txt --mute-replay-warnings $OPENVPN_OPTS --script-security 2 ${OPTIONAL_SOCKS_SCRIPT}
-
-if [ "${ENABLE_KILL_SWITCH}" = "true" ]; then
-  ufw reset
-  ufw default deny incoming
-  ufw default deny outgoing
-  ufw allow out on tun0 from any to any
-  ufw enable
-fi
+exec openvpn \
+  --config $VPN_FILE \
+  --auth-user-pass vpn-auth.txt \
+  --mute-replay-warnings \
+  $OPENVPN_OPTS \
+  --script-security 2 \
+  --setenv ENABLE_SOCKS_SERVER "${ENABLE_SOCKS_SERVER}" \
+  --setenv ENABLE_KILL_SWITCH "${ENABLE_KILL_SWITCH}" \
+  --setenv LAN_NETWORK "${LAN_NETWORK}" \
+  --up /vpn/post.sh
